@@ -8,18 +8,19 @@ import (
 	"github.com/kkdai/youtube/v2/downloader"
 )
 
-func YoutubeDL(ytID string) error {
-	client := youtube.Client{}
+func YoutubeDL(ytlink string) error {
+	client := youtube.Client{
+		Debug: true,
+	}
 	ctx := context.Background()
 
-	// youtube-dl test video
-	video, err := client.GetVideoContext(ctx, ytID)
+
+	video, err := client.GetVideoContext(ctx, ytlink)
 	if err != nil {
 		return fmt.Errorf("Error getting video: %w", err)
 	}
 	downloader := downloader.Downloader{Client: client, OutputDir: "./"}
 
-	downloader.Download(ctx, video, &video.Formats[0], ytID+".mp4")
-	return nil
+	return downloader.DownloadComposite(ctx, "", video, "hd1080", "mp4")
 
 }

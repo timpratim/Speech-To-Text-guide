@@ -22,23 +22,20 @@ func main() {
 					youtubelink := c.Args().Get(0)
 					if youtubelink == "" {
 						return cli.NewExitError("Please provide a YouTube link", 1)
-				    }
+					}
 					fmt.Println("YouTube link:", youtubelink)
-					 err := YoutubeDL(youtubelink)
+					err := YoutubeDL(youtubelink)
 					if err != nil {
-						return cli.NewExitError("Error downloading YouTube video", 1)
+						return err
 					}
 					return nil
-					
+
 				},
 			},
 		},
-	
-   	}
+	}
 	err := app.Run(os.Args)
 	if err != nil {
 		fmt.Println(err)
 	}
 }
-
-
