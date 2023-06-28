@@ -30,6 +30,8 @@ func main() {
 						return err
 					}
 					fmt.Println("Audio file:", audieofilename)
+					prefix := "/data/"
+					audieofilename = prefix + audieofilename
 					err = ConvertFile(audieofilename+".mp4", audieofilename+".wav")
 					if err != nil {
 						return err

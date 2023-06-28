@@ -18,7 +18,7 @@ func YoutubeDL(ytID string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("Error getting video: %w", err)
 	}
-	downloader := downloader.Downloader{Client: client, OutputDir: "./"}
+	downloader := downloader.Downloader{Client: client, OutputDir: "/data"}
 	outputfile := ytID + ".mp4"
 	err = downloader.DownloadComposite(ctx, outputfile, video, "hd1080", "mp4")
 	if err != nil {
