@@ -36,6 +36,11 @@ func main() {
 					if err != nil {
 						return err
 					}
+					modelfile := prefix + "ggml-tiny.en.bin"
+					err = transcribe(modelfile, audieofilename+".wav")
+					if err != nil {
+						return err
+					}
 					return nil
 
 				},
