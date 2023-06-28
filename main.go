@@ -24,7 +24,13 @@ func main() {
 						return cli.NewExitError("Please provide a YouTube link", 1)
 					}
 					fmt.Println("YouTube link:", youtubelink)
-					err := YoutubeDL(youtubelink)
+					audieofilename, err := YoutubeDL(youtubelink)
+
+					if err != nil {
+						return err
+					}
+					fmt.Println("Audio file:", audieofilename)
+					err = ConvertFile(audieofilename+".mp4", audieofilename+".wav")
 					if err != nil {
 						return err
 					}
