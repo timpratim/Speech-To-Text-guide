@@ -3,11 +3,19 @@
 package main
 
 import (
+	"Speech-To-Text/models"
+	"Speech-To-Text/repository"
 	"fmt"
 	"os"
 
 	"github.com/urfave/cli/v2" //this imports the cli package
 )
+
+const port = 8090
+
+const dbUrl = "ws://192.168.29.102:8000/rpc"
+const namespace = "surrealdb-conference-content"
+const database = "yttranscriber"
 
 func main() {
 	app := &cli.App{
@@ -18,6 +26,7 @@ func main() {
 				Name:  "get",
 				Usage: "Get transcriptions by ytlink",
 				Action: func(c *cli.Context) error {
+					repository, err := repository.NewTranscriptionsRepository(dbUrl, "root", "root", namespace, database)
 					//Print YouTube link
 					youtubelink := c.Args().Get(0)
 					if youtubelink == "" {
@@ -37,10 +46,15 @@ func main() {
 						return err
 					}
 					modelfile := prefix + "ggml-tiny.en.bin"
-					err = transcribe(modelfile, audieofilename+".wav")
+					rawTranscription, err := transcribe(modelfile, audieofilename+".wav")
 					if err != nil {
 						return err
 					}
+					_, err = repository.SaveTranscriptions(youtubelink, models.ToModel(models.RawTranscriptions(rawTranscription)))
+					if err != nil {
+						return err
+					}
+
 					return nil
 
 				},

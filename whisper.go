@@ -12,10 +12,11 @@ import (
 	"github.com/go-audio/wav"
 )
 
-func transcribe(modelPath string, audioFilename string) error {
+func transcribe(modelPath string, audioFilename string) (*[]models.RawTranscription, error) {
 	model, err := whisper.New(modelPath)
 	if err != nil {
-		return fmt.Errorf("failed to load model: %w", err)
+		return nil, fmt.Errorf("failed to load model: %w", err)
+
 	}
 	defer model.Close()
 
@@ -24,14 +25,14 @@ func transcribe(modelPath string, audioFilename string) error {
 	// Create processing context
 	context, err := model.NewContext()
 	if err != nil {
-		return fmt.Errorf("failed to create context: %w", err)
+		return nil, fmt.Errorf("failed to create context: %w", err)
 	}
 
 	var data []float32
 	// Decode the WAV file - load the full buffer
 	data, err = decodePCMBuffer(audioFilename, data)
 	if err != nil {
-		return fmt.Errorf("failed to decode audio file: %w", err)
+		return nil, fmt.Errorf("failed to decode audio file: %w", err)
 	}
 	dataLen := len(data)
 	//print data len
@@ -44,18 +45,18 @@ func transcribe(modelPath string, audioFilename string) error {
 	var pc whisper.ProgressCallback
 
 	if err := context.Process(data, cb, pc); err != nil {
-		return err
+		return nil, err
 	}
 
 	// Print out the results
 	transcriptions, err := OutputSRT(context)
 	if err != nil {
-		return fmt.Errorf("failed to output SRT: %w", err)
+		return nil, fmt.Errorf("failed to output SRT: %w", err)
 	}
 
 	// print got transcriptions
 	log.Println("Got raw transcriptions: %v", transcriptions)
-	return nil
+	return transcriptions, nil
 
 }
 

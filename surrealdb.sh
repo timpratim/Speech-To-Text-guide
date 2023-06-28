@@ -1,0 +1,1 @@
+docker run --name surrealdb --network surrealdb-network --restart always -v "$(pwd)/data:/data" -p 8000:8000 surrealdb/surrealdb:latest  start --user root --pass root
