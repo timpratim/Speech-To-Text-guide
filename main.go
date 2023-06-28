@@ -24,7 +24,12 @@ func main() {
 						return cli.NewExitError("Please provide a YouTube link", 1)
 				    }
 					fmt.Println("YouTube link:", youtubelink)
+					 err := YoutubeDL(youtubelink)
+					if err != nil {
+						return cli.NewExitError("Error downloading YouTube video", 1)
+					}
 					return nil
+					
 				},
 			},
 		},
