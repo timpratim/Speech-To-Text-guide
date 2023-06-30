@@ -53,3 +53,6 @@ func (r TranscriptionsRepository) GerTranscriptionsByYtlink(ytlink string) (inte
 		"ytlink": ytlink,
 	})
 }
+
+
+

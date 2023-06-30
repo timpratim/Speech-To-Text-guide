@@ -27,32 +27,46 @@ func main() {
 				Usage: "Get transcriptions by ytlink",
 				Action: func(c *cli.Context) error {
 					repository, err := repository.NewTranscriptionsRepository(dbUrl, "root", "root", namespace, database)
+					if err != nil {
+						return err
+					}
 					//Print YouTube link
 					youtubelink := c.Args().Get(0)
 					if youtubelink == "" {
 						return cli.NewExitError("Please provide a YouTube link", 1)
 					}
-					fmt.Println("YouTube link:", youtubelink)
-					audieofilename, err := YoutubeDL(youtubelink)
 
+					transcriptions, err := repository.GerTranscriptionsByYtlink(youtubelink)
 					if err != nil {
 						return err
 					}
-					fmt.Println("Audio file:", audieofilename)
-					prefix := "/data/"
-					audieofilename = prefix + audieofilename
-					err = ConvertFile(audieofilename+".mp4", audieofilename+".wav")
-					if err != nil {
-						return err
-					}
-					modelfile := prefix + "ggml-tiny.en.bin"
-					rawTranscription, err := transcribe(modelfile, audieofilename+".wav")
-					if err != nil {
-						return err
-					}
-					_, err = repository.SaveTranscriptions(youtubelink, models.ToModel(models.RawTranscriptions(rawTranscription)))
-					if err != nil {
-						return err
+					//Check if transcriptions is empty
+					if len(transcriptions.([]interface{})) == 0 {
+						fmt.Println("YouTube link:", youtubelink)
+						audieofilename, err := YoutubeDL(youtubelink)
+
+						if err != nil {
+							return err
+						}
+						fmt.Println("Audio file:", audieofilename)
+						prefix := "/data/"
+						audieofilename = prefix + audieofilename
+						err = ConvertFile(audieofilename+".mp4", audieofilename+".wav")
+						if err != nil {
+							return err
+						}
+						modelfile := prefix + "ggml-tiny.en.bin"
+						rawTranscription, err := transcribe(modelfile, audieofilename+".wav")
+						if err != nil {
+							return err
+						}
+						_, err = repository.SaveTranscriptions(youtubelink, models.ToModel(models.RawTranscriptions(rawTranscription)))
+						if err != nil {
+							return err
+						}
+					} else {
+						fmt.Println("YouTube link already exists in database")
+						fmt.Println(transcriptions)
 					}
 
 					return nil
