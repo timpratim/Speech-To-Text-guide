@@ -1,4 +1,4 @@
-# Speech-To-Text-guide
+# Speech-To-Text-transcriptions using Whisper.cpp-guide
 
 **Workshop Guide Outline**
 
