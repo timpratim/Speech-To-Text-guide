@@ -2,7 +2,7 @@
 
 **Workshop Guide Outline**
 
-Link to presentation slides: https://docs.google.com/presentation/d/1e5PEJu6yn3tTYsO_zEAJ8hCgg7VW11cE/edit?usp=sharing&ouid=106146834718407381605&rtpof=true&sd=true
+Link to presentation slides: https://docs.google.com/presentation/d/1e5PEJu6yn3tTYsO_zEAJ8hCgg7VW11cE/preview
 
 **1. Introduction to CLI Applications using `cli` package in Go**
 
