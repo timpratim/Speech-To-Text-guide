@@ -110,6 +110,11 @@ Learn the use of the FFmpeg tool to convert the audio file to a suitable format 
 
 **Task**: In a new git branch "ffmpeg-conversion", append the current program you have with the file conversion using FFmpeg code. Add a "convert" command to your CLI for testing this step.
 
+**Command to run**: 
+```bash
+go run . get "youtubeID"
+```
+
 **Code Snippets**
 
 ```go
