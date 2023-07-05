@@ -57,6 +57,8 @@ Now, we'll use the `youtube/v2` package to fetch video details and download the 
 
 **Task**: In a new git branch named "downloading-video", append code to your program from Step 1 for downloading a video using a YouTube link. Add a "download" command to ur CLI for testing this functionality.
 
+We will provide only the ID of the yt link and not the complete link.
+
 **Depedencies**
 
 `go get github.com/kkdai/youtube/v2`
