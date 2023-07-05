@@ -195,6 +195,11 @@ We will go through the Dockerfile and explain each directive:
 - `COPY` copies new files or directories from "<source>" and adds them to the filesystem of the image at the path "<destination>".
 - `ENTRYPOINT` sets the command and parameters that will be executed first when a container is run.
 
+Before we build the image check if the tiny model is present. If not download it. 
+ ```bash
+sh download_model tiny.en
+```
+
 **Task: Building the Docker Image**
     
 We will use Docker build command to create a Docker image from the Dockerfile. Here's the command we'll use:
