@@ -124,3 +124,6 @@ if err != nil {
     return err
 }
 ```
+**Executing the code**
+`go run . get "ltmInTalwXQ"` 
+We use only the ID of the YT link
