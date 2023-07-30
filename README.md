@@ -63,3 +63,10 @@ cli.App creates the command line application with details about the Application 
 Name: ytt
 Usage: Transcribe YouTube videos
 Commands: An array of cli.Command structs that represent the commands the application accepts. We first accept only "get". 
+
+**Executing the code**
+
+1. Go ahead and run the main.go file: `go run main.go`
+   You get all info about your cli app. 
+2. Run `go run main.go get "https://www.youtube.com/watch?v=ltmInTalwXQ"`
+
