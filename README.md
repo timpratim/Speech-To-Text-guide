@@ -143,7 +143,7 @@ if err != nil {
 ```
 **4. Building Docker Images and running Docker Containers**
 
-This part of the workshop dives into Docker, a platform that uses OS-level virtualization to deliver software in isolated packages known as containers. Docker can simplify the setup process for application development and distribution.
+This part of the workshop dives into Docker, as Docker will simplify the setup process for the application development and distribution.
 
 **Understanding the Dockerfile**
 
