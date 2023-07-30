@@ -57,3 +57,9 @@ func main() {
 }
 
 ```
+**Code breakdown** 
+
+cli.App creates the command line application with details about the Application like its
+Name: ytt
+Usage: Transcribe YouTube videos
+Commands: An array of cli.Command structs that represent the commands the application accepts. We first accept only "get". 
