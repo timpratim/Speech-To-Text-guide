@@ -225,6 +225,8 @@ This section of the workshop focuses on transcribing the converted audio file. W
 
 **Task**: In a new git branch "video-transcription", use the whisper package in your current program to perform the transcription. Add a "transcribe" command to your CLI for testing this step.
 
+Refer the docs (https://pkg.go.dev/github.com/ggerganov/whisper.cpp/bindings/go/pkg/whisper) to understand the whisper.go functions better.
+
 **Code Snippets**
 ```go
 package main
