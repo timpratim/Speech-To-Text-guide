@@ -417,6 +417,8 @@ func (r TranscriptionsRepository) GerTranscriptionsByYtlink(ytlink string) (inte
 **Task: Deploy a Database using Docker**
     
 We'll now deploy our database using Docker, which will give each participant their own isolated database instance. We'll be using the SurrealDB container.
+
+Make sure the IP address in main.go is same as your IP address of your laptop
     
 The Docker command to set this up is:
     
