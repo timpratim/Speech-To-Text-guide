@@ -195,10 +195,7 @@ We will go through the Dockerfile and explain each directive:
 - `COPY` copies new files or directories from "<source>" and adds them to the filesystem of the image at the path "<destination>".
 - `ENTRYPOINT` sets the command and parameters that will be executed first when a container is run.
 
-Before we build the image check if the tiny model is present. If not download it. 
- ```bash
-sh download_model tiny.en
-```
+
 
 **Task: Building the Docker Image**
     
@@ -207,6 +204,7 @@ We will use Docker build command to create a Docker image from the Dockerfile. H
 ```bash
 docker buildx build --platform linux/amd64 -t ytt-amd64 --load -f Dockerfile .
 ```
+Make sure Docker is running.
 
 This command tells Docker to build an image using the Dockerfile in the current directory (the "." at the end). The flag `--platform linux/amd64` specifies the platform the image is being built for. The `-t ytt-amd64` flag tags the image with the name "ytt-amd64". The `--load` flag tells Docker to load the built image into Docker's locally accessible image store.
     
