@@ -225,6 +225,21 @@ This section of the workshop focuses on transcribing the converted audio file. W
 
 **Task**: In a new git branch "video-transcription", use the whisper package in your current program to perform the transcription. Add a "transcribe" command to your CLI for testing this step.
 
+Before we build the image check if the tiny model is present. If not download it. 
+ ```bash
+sh download_model.sh tiny.en
+```
+Now lets run the docker commands again:
+
+```bash
+docker buildx build --platform linux/amd64 -t ytt-amd64 --load -f Dockerfile .
+```
+
+
+```bash
+docker run --platform linux/amd64 -v "$(pwd)":/data -it --rm ytt-amd64 get "JzPfMbG1vrE"
+```
+
 Refer the docs (https://pkg.go.dev/github.com/ggerganov/whisper.cpp/bindings/go/pkg/whisper) to understand the whisper.go functions better.
 
 **Code Snippets**
