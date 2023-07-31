@@ -20,7 +20,7 @@ require (
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
 	github.com/dlclark/regexp2 v1.9.0 // indirect
 	github.com/dop251/goja v0.0.0-20230402114112-623f9dda9079 // indirect
-	github.com/ggerganov/whisper.cpp/bindings/go v0.0.0-20230628193450-85ed71aaec8e
+	github.com/ggerganov/whisper.cpp/bindings/go v0.0.0-20230726155725-a792c4079ce6
 	github.com/go-audio/wav v1.1.0
 	github.com/go-sourcemap/sourcemap v2.1.3+incompatible // indirect
 	github.com/google/pprof v0.0.0-20230406165453-00490a63f317 // indirect

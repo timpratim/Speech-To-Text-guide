@@ -37,12 +37,12 @@ func main() {
 						return err
 					}
 					modelfile := prefix + "ggml-tiny.en.bin"
-					err = transcribe(modelfile, audieofilename+".wav")
+					context, err := transcribe(modelfile, audieofilename+".wav")
 					if err != nil {
 						return err
 					}
+					OutputSRT(context)
 					return nil
-
 				},
 			},
 		},

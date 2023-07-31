@@ -1,21 +1,20 @@
 package main
 
 import (
+	"Speech-To-Text/models"
 	"fmt"
 	"log"
 	"os"
 	"time"
 
-	"Speech-To-Text/models"
-
 	"github.com/ggerganov/whisper.cpp/bindings/go/pkg/whisper"
 	"github.com/go-audio/wav"
 )
 
-func transcribe(modelPath string, audioFilename string) error {
+func transcribe(modelPath string, audioFilename string) (*[]models.RawTranscription, error) {
 	model, err := whisper.New(modelPath)
 	if err != nil {
-		return fmt.Errorf("failed to load model: %w", err)
+		return nil, fmt.Errorf("failed to load model: %w", err)
 	}
 	defer model.Close()
 
@@ -24,14 +23,14 @@ func transcribe(modelPath string, audioFilename string) error {
 	// Create processing context
 	context, err := model.NewContext()
 	if err != nil {
-		return fmt.Errorf("failed to create context: %w", err)
+		return nil, fmt.Errorf("failed to create context: %w", err)
 	}
 
 	var data []float32
 	// Decode the WAV file - load the full buffer
 	data, err = decodePCMBuffer(audioFilename, data)
 	if err != nil {
-		return fmt.Errorf("failed to decode audio file: %w", err)
+		return nil, fmt.Errorf("failed to decode audio file: %w", err)
 	}
 	dataLen := len(data)
 	//print data len
@@ -39,24 +38,27 @@ func transcribe(modelPath string, audioFilename string) error {
 	// if data len is 0 apply ffmpeg
 
 	fmt.Println("Starting the transcription...")
+
 	// Segment callback when -tokens is specified
-	var cb whisper.SegmentCallback
+	results := make([]models.RawTranscription, 0)
+	cb := func(segment whisper.Segment) {
+		transcription := models.RawTranscription{
+			StartTs: segment.Start,
+			StopTs:  segment.End,
+			Text:    segment.Text,
+			Index:   len(results) + 1,
+		}
+		results = append(results, transcription)
+	}
 	var pc whisper.ProgressCallback
 
 	if err := context.Process(data, cb, pc); err != nil {
-		return err
+		return nil, err
 	}
 
-	// Print out the results
-	transcriptions, err := OutputSRT(context)
-	if err != nil {
-		return fmt.Errorf("failed to output SRT: %w", err)
-	}
+	log.Println("Got raw transcriptions: %v", results)
 
-	// print got transcriptions
-	log.Println("Got raw transcriptions: %v", transcriptions)
-	return nil
-
+	return &results, nil
 }
 
 func decodePCMBuffer(audioFilename string, data []float32) ([]float32, error) {
@@ -79,28 +81,12 @@ func decodePCMBuffer(audioFilename string, data []float32) ([]float32, error) {
 	return data, nil
 }
 
-func OutputSRT(context whisper.Context) (*[]models.RawTranscription, error) {
-	n := 1
-	results := make([]models.RawTranscription, 0)
-
-	for {
-		segment, err := context.NextSegment()
-		if err != nil {
-			break
-		}
-		transcription := models.RawTranscription{
-			StartTs: segment.Start,
-			StopTs:  segment.End,
-			Text:    segment.Text,
-			Index:   n,
-		}
-		fmt.Println(srtTimestamp(segment.Start), "-->", srtTimestamp(segment.End))
-		fmt.Println(segment.Text)
-		fmt.Println("n: ", n)
-		results = append(results, transcription)
-		n++
+func OutputSRT(transcriptions *[]models.RawTranscription) {
+	for _, transcription := range *transcriptions {
+		fmt.Println(srtTimestamp(transcription.StartTs), "-->", srtTimestamp(transcription.StopTs))
+		fmt.Println(transcription.Text)
+		fmt.Println("n: ", transcription.Index)
 	}
-	return &results, nil
 }
 
 func srtTimestamp(t time.Duration) string {
