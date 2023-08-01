@@ -362,3 +362,6 @@ if err != nil {
     return err
 }
 ```
+This is a screenshot of transcriptions of a 30 second video (https://www.youtube.com/watch?v=JzPfMbG1vrE)
+
+![Transcriptions](/Users/pratimbhosale/Desktop/Speech-To-Text-guide/TranscriptionsOutput.png)
