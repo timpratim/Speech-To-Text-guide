@@ -363,5 +363,5 @@ if err != nil {
 }
 ```
 This is a screenshot of transcriptions of a 30 second video (https://www.youtube.com/watch?v=JzPfMbG1vrE)
+<img width="701" alt="Screenshot 2023-08-01 at 3 19 29 PM" src="https://github.com/timpratim/Speech-To-Text-guide/assets/32492961/ac79c9d8-d726-461c-9824-d8c3ad4d8228">
 
-![Transcriptions](/Users/pratimbhosale/Desktop/Speech-To-Text-guide/TranscriptionsOutput.png)
