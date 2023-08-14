@@ -444,3 +444,14 @@ This command deploys a Docker container based on the surrealdb image.
     
 Please run this command to deploy your database. After successful deployment, your application should be able to connect and interact with the database.
     
+## Using curl to read the database
+
+```bash
+curl -X POST \
+         -u "root:root" \
+         -H "NS: surrealdb-conference-content" \
+         -H "DB: yttranscriber" \
+         -H "Accept: application/json" \
+         -d "SELECT * FROM transcriptions" \
+         http://192.168.1.22:8000/sql
+```

@@ -13,7 +13,7 @@ import (
 
 const port = 8090
 
-const dbUrl = "ws://192.168.29.239:8000/rpc"
+const dbUrl = "ws://192.168.1.33:8000/rpc"
 const namespace = "surrealdb-conference-content"
 const database = "yttranscriber"
 
@@ -36,12 +36,12 @@ func main() {
 						return cli.NewExitError("Please provide a YouTube link", 1)
 					}
 
-					transcriptions, err := repository.GerTranscriptionsByYtlink(youtubelink)
+					transcriptions, err := repository.GetTranscriptionsByYtlink(youtubelink)
 					if err != nil {
 						return err
 					}
 					//Check if transcriptions is empty
-					if len(transcriptions.([]interface{})) == 0 {
+					if len(transcriptions.([]interface{})[0].(map[string]interface{})["result"].([]interface{})) == 0 {
 						fmt.Println("YouTube link:", youtubelink)
 						audieofilename, err := YoutubeDL(youtubelink)
 

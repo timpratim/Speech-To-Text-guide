@@ -47,7 +47,7 @@ func (r TranscriptionsRepository) SaveTranscriptions(ytlink string, transcriptio
 }
 
 // get transcriptions by ytlink
-func (r TranscriptionsRepository) GerTranscriptionsByYtlink(ytlink string) (interface{}, error) {
+func (r TranscriptionsRepository) GetTranscriptionsByYtlink(ytlink string) (interface{}, error) {
 
 	return r.db.Query("SELECT * FROM transcriptions WHERE ytlink = $ytlink limit 1", map[string]interface{}{
 		"ytlink": ytlink,
