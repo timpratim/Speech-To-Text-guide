@@ -1,10 +1,13 @@
-# Speech-To-Text-guide
-
-
+# Speech-To-Text-transcriptions using Whisper.cpp-guide
 
 **Workshop Guide Outline**
 
-**1. Introduction to CLI Applications using `cli` package in Go**
+Link to presentation slides: https://docs.google.com/presentation/d/1e5PEJu6yn3tTYsO_zEAJ8hCgg7VW11cE/preview
+
+This workshop advances as we switch to other branches with the 6th branch having the complete code and documentation. 
+You can directly switch to the 6th branch if you wish to test the application.
+
+**1. Building the basic CLI Application using `cli` package in Go**
 
 In this part, we'll cover how to set up a Command Line Interface (CLI) application using the "cli" package in Go. We will start with a simple program that accepts the "get" command for fetching transcriptions using a supplied YouTube link. We'll just print back the youtube link for now.
 
