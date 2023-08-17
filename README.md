@@ -229,6 +229,13 @@ Before we build the image check if the tiny model is present. If not download it
  ```bash
 sh download_model.sh tiny.en
 ```
+
+> **Note:** If you don't want to build everything from scratch and just want to see the application running, you can pull the Docker image directly from the GitHub registry. In the Docker image pulled from the GitHub registry, the necessary model is already included. Therefore, there is no need to download it again. You can use the Docker image and proceed to the next steps. Use the following command:
+> 
+>  ```bash
+>  docker run --platform linux/amd64 -v "$(pwd)":/data -it --rm ghcr.io/timpratim/speech-to-text-guide:5-video-transcription get "JzPfMbG1vrE" 
+>  ```
+
 Now lets run the docker commands again:
 
 ```bash
