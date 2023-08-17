@@ -27,7 +27,7 @@ require (
 	github.com/google/pprof v0.0.0-20230406165453-00490a63f317 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/surrealdb/surrealdb.go v0.2.1
-	github.com/urfave/cli/v2 v2.25.7 // indirect
+	github.com/urfave/cli/v2 v2.25.7
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
 	golang.org/x/text v0.9.0 // indirect
 )

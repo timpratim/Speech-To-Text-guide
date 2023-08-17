@@ -13,9 +13,18 @@ import (
 
 const port = 8090
 
-const dbUrl = "ws://192.168.1.33:8000/rpc"
+var dbUrl string
+
 const namespace = "surrealdb-conference-content"
 const database = "yttranscriber"
+
+func init() {
+	ipAddress := os.Getenv("IP_ADDRESS") // Get the DB_IP from the environment variables
+	if ipAddress == "" {
+		ipAddress = "192.168.1.33"
+	}
+	dbUrl = "ws://" + ipAddress + ":8000/rpc"
+}
 
 func main() {
 	app := &cli.App{
