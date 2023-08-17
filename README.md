@@ -358,6 +358,14 @@ The final section will explain how to store and retrieve transcriptions in a dat
 
 **Task**: In the git branch named "db-layer", extend your current program with the database operations. Add the necessary commands like "save" and "get" to the CLI for testing.
 
+Let's run the docker commands again
+
+> **Note:** If you don't want to build everything from scratch and just want to see the application running, you can pull the Docker image directly from the GitHub registry. The Docker container relies on an environment variable `IP_ADDRESS` for your local IP address. Remember to set this variable before running the container using the `-e` option in the `docker run` command. You can use the Docker image and proceed to the next steps. Use the following command:
+> 
+>  ```bash
+>  docker run --platform linux/amd64 --network surrealdb-network -v "$(pwd)":/data -e IP_ADDRESS=192.168.77.146 -it --rm ghcr.io/timpratim/speech-to-text-guide:6-db-layer get "JzPfMbG1vrE" 
+>  ```
+
 **Code Snippets**
     
 ```go
