@@ -198,6 +198,13 @@ We will go through the Dockerfile and explain each directive:
 
 
 **Task: Building the Docker Image**
+
+> **Note:** If you don't want to build everything from scratch and just want to see the application running, you can pull the Docker image directly from the GitHub registry. Use the following command:
+> 
+>  ```bash
+>  docker run --platform linux/amd64 -v "$(pwd)":/data -it --rm ghcr.io/timpratim/speech-to-text-guide:4-dockerfile get "JzPfMbG1vrE" 
+>  ```
+    
     
 We will use Docker build command to create a Docker image from the Dockerfile. Here's the command we'll use:
 
