@@ -53,7 +53,8 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-}```
+}
+```
 **Code breakdown** 
 
 cli.App creates the command line application with details about the Application like its
