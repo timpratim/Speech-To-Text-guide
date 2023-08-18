@@ -28,15 +28,6 @@ In this part, we'll cover how to set up a Command Line Interface (CLI) applicati
 **Code Snippets**
 
 ```go
-package main
-
-import (
-	"fmt"
-	"os"
-
-	"github.com/urfave/cli/v2" //this imports the cli package
-)
-
 func main() {
 	app := &cli.App{
 		Name:  "ytt",
@@ -62,9 +53,7 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-}
-
-```
+}```
 **Code breakdown** 
 
 cli.App creates the command line application with details about the Application like its
