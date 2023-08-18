@@ -2,10 +2,18 @@
 
 **Workshop Guide Outline**
 
-Link to presentation slides: https://docs.google.com/presentation/d/1e5PEJu6yn3tTYsO_zEAJ8hCgg7VW11cE/preview
+The [presentation slides](https://sdb.li/STTpresentation) are open to public.
 
 This workshop advances as we switch to other branches with the 6th branch having the complete code and documentation. 
 You can directly switch to the 6th branch if you wish to test the application.
+
+> **Note for Windows users**
+> Refer to the following blogs to download the necessary packages on Windows. 
+> - [Docker](https://medium.com/devops-with-valentine/how-to-install-docker-on-windows-10-11-step-by-step-83074a80e6f9)
+> - [git](https://zaycodes.medium.com/how-to-install-git-on-windows-f6031afef08c)
+> - [ffmpeg](https://www.geeksforgeeks.org/how-to-install-ffmpeg-on-windows/)
+
+
 
 **1. Building the basic CLI Application using `cli` package in Go**
 
