@@ -115,7 +115,15 @@ func YoutubeDL(ytlink string) error {
 }
 ```
 
-The `context` package might seem like it doesn't serve any purpose, but it's actually a placeholder for future enhancements. Suppose you decide to add a feature that allows users to cancel downloads or you want to set a maximum time limit for downloads. You can modify the code to pass a cancelable context or a context with a timeout instead of `context.Background()`
+The context parameter is essential for a few reasons:
+
+Cancellation: In some cases, you want to cancel a function because it’s taking too long or because you don’t need the result anymore. With context, you can cancel the GetVideoContext function even after it has started.
+
+Deadlines: You can set up a deadline for the function’s execution using the context.
+
+Context Values: Context allows you to carry request-scoped values, for example, trace id across API boundaries and between services.
+
+Remember, context is designed to be passed through your call stack, from function to function. That allows you to handle state information related to a particular run of your function, even if it’s concurrently running multiple times.
 
 ```go
 //main.go
